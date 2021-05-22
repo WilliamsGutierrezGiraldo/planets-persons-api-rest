@@ -12,5 +12,6 @@ public interface PlanetsService {
 	public HttpStatus incremetVisitsService(Long planetId);
 	public int incrementVisitsInRepo(Long planetId);
 	public ResponseEntity<PlanetDTO> getById(Long planetId);
+	public ResponseEntity<PlanetsResponse> getTop3ByNumberOfVisits();
 
 }

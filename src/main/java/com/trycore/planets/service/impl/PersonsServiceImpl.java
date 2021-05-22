@@ -77,6 +77,19 @@ public class PersonsServiceImpl implements PersonsService {
 		return 0;
 	}
 	
+	@Override
+	public ResponseEntity<PersonsResponse> findTop3ByOrderByNumberOfVisitsDesc() {
+		List<PersonEntity> entities = (List<PersonEntity>) repository.
+				findTop3ByOrderByNumberOfVisitsDesc();
+		List<PersonDTO> dtos = new ArrayList<>();
+		PersonsResponse responseBody = new PersonsResponse();
+		for (PersonEntity entity : entities) {
+			dtos.add(entityToDTO(entity));
+		}
+		responseBody.setPersons(dtos);
+		return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+	}
+	
 	public PersonDTO entityToDTO(PersonEntity entity) {
 		PersonDTO dto = new PersonDTO();
 		dto.setAge(entity.getAge());
@@ -92,7 +105,5 @@ public class PersonsServiceImpl implements PersonsService {
 		dto.setPlanetName(entity.getPlanet().getName());
 		return dto;
 	}
-
-
 
 }

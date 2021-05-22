@@ -70,6 +70,18 @@ public class PlanetsServiceImpl implements PlanetsService {
 		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 
+	@Override
+	public ResponseEntity<PlanetsResponse> getTop3ByNumberOfVisits() {
+		List<PlanetEntity> entities = (List<PlanetEntity>) repository.findTop3ByOrderByNumberOfVisitsDesc();
+		List<PlanetDTO> dtos = new ArrayList<>();
+		PlanetsResponse responseBody = new PlanetsResponse();
+		for (PlanetEntity entity : entities) {
+			dtos.add(entityToDTO(entity));
+		}
+		responseBody.setPlanets(dtos);
+		return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+	}
+	
 	public PlanetDTO entityToDTO(PlanetEntity entity) {
 		PlanetDTO dto = new PlanetDTO();
 		dto.setId(entity.getId());
@@ -82,5 +94,7 @@ public class PlanetsServiceImpl implements PlanetsService {
 		dto.setPopulation(Long.valueOf(entity.getPersons().size()));
 		return dto;
 	}
+
+
 	
 }

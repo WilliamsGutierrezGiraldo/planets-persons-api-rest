@@ -18,6 +18,6 @@ public interface PersonRepository extends CrudRepository<PersonEntity, Long> {
 		nativeQuery = true
 	)
 	public List<PersonEntity> findByPlanetId(@Param("PLANET_ID") Long planetId);
-	
 	public List<PersonEntity> findAll(Sort sort);
+	public List<PersonEntity> findTop3ByOrderByNumberOfVisitsDesc();
 }

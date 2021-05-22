@@ -12,5 +12,6 @@ import com.trycore.planets.repository.entity.PlanetEntity;
 public interface PlanetRepository extends CrudRepository<PlanetEntity, Long> {
 	
 	public List<PlanetEntity> findAll(Sort sort);
+	public List<PlanetEntity> findTop3ByOrderByNumberOfVisitsDesc();
 
 }

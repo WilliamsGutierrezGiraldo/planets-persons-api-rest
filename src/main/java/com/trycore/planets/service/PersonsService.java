@@ -11,5 +11,6 @@ public interface PersonsService {
 	public ResponseEntity<PersonsResponse> findByPlanetId(Long planetId);
 	public HttpStatus incremetVisitsService(Long personId);
 	public int incrementVisitsInRepo(Long personId);
+	public ResponseEntity<PersonsResponse> findTop3ByOrderByNumberOfVisitsDesc();
 
 }

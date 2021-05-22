@@ -22,7 +22,7 @@ public class PlanetsController {
 	@Autowired
 	private PlanetsService service;
 	
-	@GetMapping(path = "getAll")
+	@GetMapping(path = "/getAll")
 	public ResponseEntity<PlanetsResponse> getAll(){
 		return service.getAll();
 	}
@@ -32,9 +32,14 @@ public class PlanetsController {
 		return service.incremetVisitsService(planetId);
 	}
 	
-	@GetMapping(path = "getById/{planet-id}")
+	@GetMapping(path = "/getById/{planet-id}")
 	public ResponseEntity<PlanetDTO> getById(@PathVariable("planet-id") Long planetId){
 		return service.getById(planetId);
+	}
+	
+	@GetMapping(path = "/getTop3ByNumberOfVisits")
+	public ResponseEntity<PlanetsResponse> getTop3ByNumberOfVisits(){
+		return service.getTop3ByNumberOfVisits();
 	}
 
 }
