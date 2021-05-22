@@ -35,5 +35,10 @@ public class PersonsController {
 	public HttpStatus incremetVisits(@PathVariable("person-id") Long personId) {
 		return service.incremetVisitsService(personId);
 	}
+	
+	@GetMapping(path = "/getTop3ByNumberOfVisits")
+	public ResponseEntity<PersonsResponse> getTop3ByOrderByNumberOfVisitsDesc() {
+		return service.findTop3ByOrderByNumberOfVisitsDesc();
+	}
 
 }
