@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.trycore.planets.dto.PersonDTO;
 import com.trycore.planets.dto.response.PersonsResponse;
 import com.trycore.planets.service.PersonsService;
 
@@ -24,6 +25,11 @@ public class PersonsController {
 	@GetMapping(path = "/getAll")
 	public ResponseEntity<PersonsResponse> getAll() {
 		return service.getAll();
+	}
+	
+	@GetMapping(path = "/getById/{planet-id}")
+	public ResponseEntity<PersonDTO> getById(@PathVariable("planet-id") Long planetId) {
+		return service.findById(planetId);
 	}
 	
 	@GetMapping(path = "/findByPlanetId/{planet-id}")

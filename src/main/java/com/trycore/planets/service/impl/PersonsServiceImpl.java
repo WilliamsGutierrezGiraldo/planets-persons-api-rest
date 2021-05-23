@@ -90,6 +90,17 @@ public class PersonsServiceImpl implements PersonsService {
 		return ResponseEntity.status(HttpStatus.OK).body(responseBody);
 	}
 	
+	@Override
+	public ResponseEntity<PersonDTO> findById(Long personId) {
+		Optional<PersonEntity> op = repository.findById(personId);
+		PersonDTO dto = new PersonDTO();
+		if(op.isPresent()) {
+			PersonEntity entity = op.get();
+			dto = entityToDTO(entity);
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
+	}
+	
 	public PersonDTO entityToDTO(PersonEntity entity) {
 		PersonDTO dto = new PersonDTO();
 		dto.setAge(entity.getAge());
